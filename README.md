@@ -21,7 +21,7 @@ Now what we will do is to create a database and get its ID to configure it in th
 
 1. Create a database. Name the database and the page as you wish, for example "Cassandra DB".
 2. Create a field in the database of type URL and call it "URL" (without the quotes). You can add as many fields as you want, but this one must be created.
-3. In the database, click on the three dots at the top right and click on "Copy link to view". The link will look something like this, we are interested in the part in bold. https://www.notion.so/ **966e887a3048453c86bec11f4bbffcee** ?v=150787ea6d9a47a6acedd40ecb49cad7
+3. In the database, click on the three dots at the top right and click on "Copy link to view". The link will look something like this, we are interested in the part in bold: *notion.so/***966e887a3048453c86bec11f4bbffcee***?v=150787ea6d9a47a6acedd40ecb49cad7*
 4. Add the integration to a page. Three dots at the top right of the site, under Connections.
 
 To add a page to the database you must click on the three dots at the top of the web and click on "Copy link" inside the page you want to add. This link must be pasted into the URL field of the database we created earlier.
