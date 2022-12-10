@@ -1,0 +1,1 @@
+*/5 * * * * $CASSANDRA_HOME/main.py

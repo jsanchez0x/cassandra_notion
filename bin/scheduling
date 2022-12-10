@@ -1,0 +1,13 @@
+#!/bin/sh
+
+PROCESS="/usr/sbin/crond"
+PID=$(pgrep -x "$PROCESS")
+
+if [ -z "$PID" ]; then
+    echo "Enabling Cassandra schedule (background mode)..."
+    $PROCESS -b -l 8
+
+else
+    echo "Disabling Cassandra schedule..."
+    kill -9 $PID
+fi

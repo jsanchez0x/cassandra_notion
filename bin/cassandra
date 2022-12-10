@@ -1,0 +1,6 @@
+#!/bin/sh
+
+now=$(date +"%d/%m/%Y %H:%M:%S")
+
+echo "$now INFO: Running cassandra manually..."
+python3 $CASSANDRA_HOME/main.py

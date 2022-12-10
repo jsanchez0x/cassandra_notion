@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Activating scheduling for Cassandra in the crond (foreground mode)."
+/usr/sbin/crond -f -l 8
