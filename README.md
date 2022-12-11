@@ -77,9 +77,9 @@ It is possible to manually run Cassandra with the following command:
 
 ### Some support commands
 
-You can open a shell (sh) to the container with the following helper:
+You can open a shell to the container with the following helper:
 ```bash
-./utils/container.sh shell
+./utils/container.sh sh
 ```
 
 
