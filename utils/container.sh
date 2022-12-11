@@ -10,6 +10,7 @@ if [ "$1" == "image" ]; then
 elif [ "$1" == "run" ]; then
     docker run -d -it \
     --env-file utils/env.list \
+    --restart=unless-stopped \
     --name ${DOCKER_CONTAINER_NAME} ${DOCKER_IMAGE}:${DOCKER_TAG}
 
 elif [ "$1" == "cassandra" ] || [ "$1" == "scheduling" ]; then
