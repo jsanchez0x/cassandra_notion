@@ -71,6 +71,7 @@ class Notion:
 
     def get_children_blocks(self, block_id: str) -> list:
         # Take the children of a parent block.
+
         url = "https://api.notion.com/v1/blocks/" + block_id + "/children?page_size=100"
         blocks_response = requests.get(url, headers=self.compose_basic_header_request())
         blocks_response_data = json.loads(blocks_response.text)
@@ -85,6 +86,7 @@ class Notion:
 
 
     def create_block(self, parent_block: str, type: str = 'quote', text_content: str = '') -> str:
+        # Create block. If not specified, it will be of type quote and without content. If it has text, it will be in italics.
 
         url = "https://api.notion.com/v1/blocks/" + parent_block + "/children"
         # It is necessary to add the content-type header because the request is a PATCH
