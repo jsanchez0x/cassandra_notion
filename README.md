@@ -4,7 +4,7 @@
 
 Cassandra is the name given to this proof of concept, which consists of a Docker container that executes a Python program.
 
-This program monitors the pages indicated in Notion, which have a callout type block and the emoji is a woman. The text indicated in this block will be sent to the Davinci model of GPT-3 created by OpenAI as prompt.
+This program monitors the pages accessed by the integration, which have a callout type block and the emoji is a woman. The text indicated in this block will be sent to the Davinci model of GPT-3 created by OpenAI as prompt.
 
 The response will be added to the callout block in Notion as quote block.
 
@@ -20,20 +20,7 @@ The response will be added to the callout block in Notion as quote block.
 
 ## Preparing Notion
 
-Cassandra needs a database in order to work. This database specifies the URLs of the pages to be monitored.  
-Now what we will do is to create a database and get its ID to configure it in the container.
-
-1. Create a database. Name the database and the page as you wish, for example "Cassandra DB".
-2. Create a field in the database of **type URL** and call it **"URL" (without the quotes)**. You can add as many fields as you want, **but this one must be created**.
-3. In the database, click on the three dots at the top right and click on *Copy link to view*. The link will look something like this, we are interested in the part in bold: notion.so/**3459a2378689d30278583g9237r5176p**?v=150787e...
-4. Add the integration to a page. Three dots at the top right of the site, under *Connections*.
-
-![Creating the database, the URL field, copying the database link and activating the integration.](https://user-images.githubusercontent.com/49794514/206880697-092874a3-8aee-4073-bca3-693c4d483065.gif)
-
-
-To add a page to the database you must click on the three dots at the top of the web and click on *Copy link* inside the page you want to add. This link must be pasted into the URL field of the database we created earlier.
-
-**Don't forget to add Cassandra to the page**, in the same way as in step 4 above.
+All you have to do is add the integration to the page to be monitored. This is done through the three dots button at the top of the page, in the *Connections* section.
 
 
 ## Running the container
@@ -42,15 +29,13 @@ To add a page to the database you must click on the three dots at the top of the
 | Name           | Description                                                        | Example                                          |
 | -------------- | -------------------------------------------------------------------| -------------------------------------------------|
 | NOTION_API_KEY | Required to work with Notion integration.                          | secret_eyHJKM45WEDIGHJBNIOPpwimvtyk748byk877ED   |
-| NOTION_DB_ID   | Required to use the database (more info in Preparation in Notion). | 3459a2378689d30278583g9237r5176p                 |
 | OPENAI_API_KEY | Required in order to use the OpenAI GPT-3 model.                   | sk-pptbkiORt4679kbD358856dvcxQEsfgnlk007hbr5f45h |
 
-You must create a file in *utils* directory called "**env.list**" (without the quotes), in this file you must define the system variables indicated below. The file should look like this: 
->NOTION_API_KEY=secret_eyHJKM45WEDIGHJBNIOPpwimvtyk748byk877ED  
->NOTION_DB_ID=3459a2378689d30278583g9237r5176p  
+You must create a file in *utils* directory called "**env.list**" (without the quotes), in this file you must define the system variables indicated below. The file should look like this:
+>NOTION_API_KEY=secret_eyHJKM45WEDIGHJBNIOPpwimvtyk748byk877ED
 >OPENAI_API_KEY=sk-pptbkiORt4679kbD358856dvcxQEsfgnlk007hbr5f45h
 
-More information on how to start a Docker container with system variables [here](https://docs.docker.com/engine/reference/commandline/run/#set-environment-variables--e---env---env-file). 
+More information on how to start a Docker container with system variables [here](https://docs.docker.com/engine/reference/commandline/run/#set-environment-variables--e---env---env-file).
 
 
 ### 2. Create the Docker image
