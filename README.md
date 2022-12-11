@@ -22,6 +22,8 @@ The response will be added to the callout block in Notion as quote block.
 
 All you have to do is add the integration to the page to be monitored. This is done through the three dots button at the top of the page, in the *Connections* section.
 
+![Page to be monitored by Cassandra](https://user-images.githubusercontent.com/49794514/206914327-46b98895-f8f5-4a12-b384-c7c6d86d4e2e.gif)
+
 
 ## Running the container
 
