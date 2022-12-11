@@ -39,6 +39,7 @@ class OpenAI:
             cleaned_response = self.clean_model_response(model_response_data['choices'][0]['text'])
 
             return cleaned_response
+
         except KeyError:
             return "ERROR: The response received by the OpenAI API is not as expected."
 
