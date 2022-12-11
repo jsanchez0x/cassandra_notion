@@ -30,38 +30,48 @@ class Notion:
 
 
     def get_pages(self) -> list[int]:
-        # It connects to a database in Notion that has a field of type url and called "URL".
-        # Here you specify the pages that Cassandra will access. These pages will be returned.
+        # Gets all the pages that Cassandra has access to.
+        # It checks that the page is neither archived nor the last publisher is Cassandra itself.
+        # TODO: Pagination.
 
-        url = "https://api.notion.com/v1/databases/" + inc.cfg.notion_database_id + "/query"
-        payload = {"page_size": 100}
-        database_response = requests.post(url, json=payload, headers=self.compose_basic_header_request())
-        database_response_data = json.loads(database_response.text)
         pages_ids = []
 
-        # Iteration through the different table rows
-        for database_row in database_response_data['results']:
-            url = database_row['properties']['URL']['url']
-            if url != None:
-                possible_id = url.split('-')[-1]
+        url = "https://api.notion.com/v1/search"
+        headers = self.compose_basic_header_request()
+        headers['content-type'] = 'application/json'
 
-                url = "https://api.notion.com/v1/pages/" + possible_id
-                page_response = requests.get(url, headers=self.compose_basic_header_request())
+        payload = {
+            "query":"",
+            "sort": {
+                "direction":"ascending",
+                "timestamp":"last_edited_time"
+                },
+            "filter": {
+                "value": "page",
+                "property": "object"
+            }
+        }
+        pages_response = requests.post(url, json=payload, headers=headers)
+        pages_response_data = json.loads(pages_response.text)
 
-                # If a code 200 is returned, it means that Notion recognizes the page and Cassandra has access to it.
-                if page_response.status_code == 200:
-                    page_response_data = json.loads(page_response.text)
-                    archived = page_response_data['archived']
+        try:
+            for page in pages_response_data['results']:
+                page_id = page['id']
+                page_last_edited_by = page['last_edited_by']['id']
+                archived = page['archived']
 
-                    # The page is checked to ensure that it is not archived.
-                    if not archived:
-                        pages_ids.append(possible_id)
+                if not archived and page_last_edited_by != self.get_integration_id():
+                    pages_ids.append(page_id)
+
+        except KeyError:
+            pages_ids = []
 
         return pages_ids
 
 
     def get_children_blocks(self, block_id: str) -> list:
         # Take the children of a parent block.
+
         url = "https://api.notion.com/v1/blocks/" + block_id + "/children?page_size=100"
         blocks_response = requests.get(url, headers=self.compose_basic_header_request())
         blocks_response_data = json.loads(blocks_response.text)
@@ -76,6 +86,7 @@ class Notion:
 
 
     def create_block(self, parent_block: str, type: str = 'quote', text_content: str = '') -> str:
+        # Create block. If not specified, it will be of type quote and without content. If it has text, it will be in italics.
 
         url = "https://api.notion.com/v1/blocks/" + parent_block + "/children"
         # It is necessary to add the content-type header because the request is a PATCH
@@ -137,6 +148,7 @@ class Notion:
 
     def delete_block(self, block_id: str) -> bool:
         # Deletes a block indicated by its ID.
+
         url = "https://api.notion.com/v1/blocks/" + block_id
         response = requests.delete(url, headers=self.compose_basic_header_request())
 
@@ -155,7 +167,7 @@ class Notion:
         for page_id in self.get_pages():
             page_blocks = self.get_children_blocks(page_id)
 
-            # TODO: Implement pagination!!!!!!
+            # TODO: Implement pagination
 
             for block in page_blocks:
                 try:
