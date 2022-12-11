@@ -24,6 +24,9 @@ Now what we will do is to create a database and get its ID to configure it in th
 3. In the database, click on the three dots at the top right and click on "Copy link to view". The link will look something like this, we are interested in the part in bold: *notion.so/***966e887a3048453c86bec11f4bbffcee***?v=150787ea6d9a47a6acedd40ecb49cad7*
 4. Add the integration to a page. Three dots at the top right of the site, under Connections.
 
+![create_database_add_connection](https://user-images.githubusercontent.com/49794514/206880697-092874a3-8aee-4073-bca3-693c4d483065.gif)
+
+
 To add a page to the database you must click on the three dots at the top of the web and click on "Copy link" inside the page you want to add. This link must be pasted into the URL field of the database we created earlier.
 
 Don't forget to add Cassandra to the page, in the same way as in step 4 above.
