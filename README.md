@@ -6,9 +6,8 @@ Cassandra is the name given to this proof of concept, which consists of a contai
 This program monitors the pages indicated in Notion, which have a callout type block and the emoji is a woman. The text indicated in this block will be sent to the Davinci model of GPT-3 created by OpenAI as prompt.
 
 The response will be added to the callout block in Notion as another quote block.
-![Waiting for AI response](https://user-images.githubusercontent.com/49794514/206880944-e76694e2-0e9c-44df-a5cc-d4871b235dbe.jpg)
 
-![The AI response](https://user-images.githubusercontent.com/49794514/206880945-5564049c-8125-4b0e-b0df-7146f5a29587.jpg)
+![Cassandra test](https://user-images.githubusercontent.com/49794514/206881319-cd0cfcb3-d094-431b-9a83-e95ea78a8f59.gif)
 
 
 ## Requeriments
