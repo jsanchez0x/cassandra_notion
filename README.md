@@ -32,7 +32,7 @@ All you have to do is add the integration to the page to be monitored. This is d
 | OPENAI_API_KEY | Required in order to use the OpenAI GPT-3 model.                   | sk-pptbkiORt4679kbD358856dvcxQEsfgnlk007hbr5f45h |
 
 You must create a file in *utils* directory called "**env.list**" (without the quotes), in this file you must define the system variables indicated below. The file should look like this:
->NOTION_API_KEY=secret_eyHJKM45WEDIGHJBNIOPpwimvtyk748byk877ED
+>NOTION_API_KEY=secret_eyHJKM45WEDIGHJBNIOPpwimvtyk748byk877ED  
 >OPENAI_API_KEY=sk-pptbkiORt4679kbD358856dvcxQEsfgnlk007hbr5f45h
 
 More information on how to start a Docker container with system variables [here](https://docs.docker.com/engine/reference/commandline/run/#set-environment-variables--e---env---env-file).
