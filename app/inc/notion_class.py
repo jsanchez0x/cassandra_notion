@@ -210,5 +210,5 @@ class Notion:
         # Write in the Cassandra callout block in Notion the AI response.
         # It will use a quote format with yellow background.
 
-        block_id = self.create_block(block_data['id'], "quote", "Waiting IA response...")
+        block_id = self.create_block(block_data['id'], "quote", "Waiting for AI response...")
         self.update_block(block_id, text_content=self.get_ia_response(block_data['text']))
