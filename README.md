@@ -61,11 +61,7 @@ And it is executed with the following command:
 ### Executing Cassandra
 
 #### a. Through scheduled tasks
-The definition of task scheduling is done in the _utils/crontab.txt_ file.
-You can enable or disable task scheduling with the following command:
-```bash
-./utils/container.sh scheduling
-```
+The container when started will schedule Cassandra execution as defined in the _utils/crontab.txt_ file.
 
 #### b. Manually
 It is possible to manually run Cassandra with the following command:
@@ -77,7 +73,6 @@ It is possible to manually run Cassandra with the following command:
 
 You can open a shell (sh) to the container with the following helper:
 ```bash
-./utils/container.sh sqlite
 ./utils/container.sh shell
 ```
 
